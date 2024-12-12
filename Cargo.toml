@@ -38,12 +38,12 @@ ron = { version = "0.8", optional = true }
 egui = { version = "0.29", optional = true }
 bevy_egui = { version = "0.30", default-features = false, features = ["render"], optional = true }
 
-bevy-inspector-egui = { version = "0., default-features = false, features = ["bevy_render"], optional = true }
+bevy-inspector-egui = { version = "0.27", default-features = false, features = ["bevy_render"], optional = true }
 egui_plot = { version = "0.29", optional = true }
 
 [dev-dependencies]
 bevy = "0.14"
-bevy-inspector-egui = { branch = "egui29", git = "https://github.com/MiniMinerX/bevy-inspector-egui.git" }
+bevy-inspector-egui = { version = "0.27" }
 criterion = "0.5.1"
 rand = "0.8.5"
 eframe = "0.29"
