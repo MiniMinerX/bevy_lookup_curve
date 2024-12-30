@@ -61,7 +61,7 @@ egui_plot = { version = "0.30", optional = true }
 
 [dev-dependencies]
 bevy = "0.15"
-bevy-inspector-egui = { version = "0.28.0" }
+bevy-inspector-egui = {branch = "egui30", git = "https://github.com/MiniMinerX/bevy-inspector-egui.git"}
 criterion = "0.5.1"
 rand = "0.8.5"
 eframe = "0.29"
