@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use bevy_egui::{EguiContextPass, EguiContexts, EguiPlugin};
+use bevy_egui::{EguiPrimaryContextPass, EguiContexts, EguiPlugin};
 
 use bevy_lookup_curve::{
     editor::LookupCurveEguiEditor, Knot, KnotInterpolation, LookupCache, LookupCurve,
@@ -13,7 +13,7 @@ fn main() {
         })
         .add_systems(Startup, setup)
         .add_systems(Update, animate)
-        .add_systems(EguiContextPass, editor_ui)
+        .add_systems(EguiPrimaryContextPass, editor_ui)
         .run();
 }
 
@@ -98,10 +98,15 @@ fn editor_ui(
     mut animate: Query<(Entity, &AnimateX, &mut AnimateWithCurve, &mut EditorWindow)>,
     mut contexts: EguiContexts,
 ) {
+    let ctx = match contexts.ctx_mut() {
+        Ok(ctx) => ctx,
+        Err(_) => return,
+    };
+
     for (entity, animate, mut curve, mut editor) in animate.iter_mut() {
         // draw editor
         editor
             .0
-            .ui_window(contexts.ctx_mut(), entity, &mut curve.0, Some(animate.t));
+            .ui_window(ctx, entity, &mut curve.0, Some(animate.t));
     }
 }
